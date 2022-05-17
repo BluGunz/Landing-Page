@@ -16,10 +16,16 @@ body {
     margin: 0;
     font-family: 'Merriweather', serif;
     color: #fff;
+    padding-top: 60px;
 
 }
 
-
+@media screen and (min-width: 780px) {
+    .full-width-img {
+    margin: auto;
+    width: 90%;
+    }
+}
 
 /* Typeography General*/
 h1 {
@@ -71,10 +77,14 @@ section {
     padding-left: 0;
     margin: 0;
     text-align: right;
+    background-color: #FBF8F1;
+    font-size: 1.75rem;
+    
 }
 
 .navbar__menu li {
     display: inline-block;
+    
 }
 
 .navbar__menu .menu__link {
@@ -91,18 +101,8 @@ section {
     transition: ease 0.3s all;
 }
 
-.container{
-    background-color: #FBF8F1;
-    font-size: 1.75rem;
-    
-}
-@media (max-width: 979px) {
-    nav-fixed-top {
-    position: fixed !important;
-    }
-    }
 
-nav a:link, a:visited {
+#navbar__list a:link, a:visited {
     
     color: black;
     padding: 20px 20px;
@@ -117,10 +117,7 @@ nav a:link, a:visited {
   }
 
 
-.item{
-    margin-left: 20px;
-    
-}  
+
 
 
 /* Header Styles */
