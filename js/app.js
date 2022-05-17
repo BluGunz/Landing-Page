@@ -22,8 +22,10 @@
  * Define Global Variables
  *
 */
-const navMenu = document.querySelector('.navbar__list');
-const navSections = document.querySelectorAll('section');
+
+const menu = document.getElementById('navbar__list');
+const sections = document.querySelectorAll('section');
+
 
 /**
  * End Global Variables
@@ -38,66 +40,30 @@ const navSections = document.querySelectorAll('section');
 */
 
 // build the nav
-function NavPanel (){     
-  
-  let content = document.createElement('');
-  content.innerHTML = "";
-  let liststart = document.createElement('ul');
-  let listelement1 = document.createElement('li');
-  let listelement2 = document.createElement('li');
-  let listelement3 = document.createElement('li');
-  let listelement4 = document.createElement('li');
-  listelement1.innerHTML = '<a href="#section1">Section 1</a>';
-  listelement2.innerHTML = '<a href="#section2">Section 2</a>';
-  listelement3.innerHTML = '<a href="#section3">Section 3</a>';
-  listelement4.innerHTML = '<a href="#section4">Section 4</a>';
-  liststart.appendChild(listelement1);
-  liststart.appendChild(listelement2);
-  liststart.appendChild(listelement3);
-  liststart.appendChild(listelement4);
-  let t1 = document.createElement('section');
-  let t2 = document.createElement('section');
-  let t3 = document.createElement('section');
-  let t4 = document.createElement('section');
-  t1.id = "section1";
-  t2.id = "section2";
-  t3.id = "section3";
-  t4.id = "section4";
+const navMenu = () => {
+  let navDirectoty = '';
+  // looping over all sections
+  sections.forEach(section => {
+      const sectionArea = section.id;
+      const sectionData = section.dataset.nav;
+      navDirectoty += `<li><a class="menu__link" href="#${sectionArea}">${sectionData}</a></li>`;
+  });
+  // append all elements to the navigation
+  menu.innerHTML = navDirectoty;
 
-  t1.innerHTML = "Section 1";
-  t2.innerHTML = "Section 2";
-  t3.innerHTML = "Section 3";
-  t4.innerHTML = "Section 4";
 
-  content.appendChild(liststart);
-  content.appendChild(t1);
-  content.appendChild(t2);
-  content.appendChild(t3);
-  content.appendChild(t4);
-  let html = [
-    '<div>',
-    '<nav class="navbar__menu">',
-    ' <div class="container">',
-    '<ul id="navbar__list">',
-    '<li><a href="#">Section 1</a></li>',
-    '<li><a href="#">Section 2</a></li>',
-    '<li><a href="#">Section 3</a></li>',
-    '<li><a href="#">Section 4</a></li>',
-    '</ul>',
-
-    '</nav>',
-    '</div>'
-  ].join('\n');
-  ("navbar__menu").append(html);
-  ("#navbar__list").append(content);
 };
 
-
+navMenu();
 
 
 
 // Add class 'active' to section when near top of viewport
 // I had help from stackover flow
+// getting the largest value that's less or equal to the number
+const offset = (section) => {
+  return Math.floor(section.getBoundingClientRect().top);
+};
 
 window.addEventListener('scroll', (e) => {
     const sections = document.querySelectorAll('section');
@@ -134,7 +100,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Build menu Scroll to section on link click Set sections as active
 
   function ActiveNavBar (){
-    let linksContainer = document.getElementById("navbar__list");
+    const linksContainer = document.getElementById("navbar__list");
     let links = linksContainer.querySelectorAll('li');
     for (let i = 0; i < links.length; i++) {
         links[i].addEventListener("click", function() {
